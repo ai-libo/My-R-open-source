@@ -1,0 +1,13 @@
+#sample_sd<- sd(sh999999$Retindex)
+#sample_sd
+#[1] 0.01191674
+sample_t=(sample_mean-0)/(sample_sd/(nrows^(1/2)))
+#sample_t
+#[1] 0.1762253
+pt(sample_t,df=(nrows-1))
+#[1] 0.5699268
+pt(-1*sample_t,df=(nrows-1))*2 
+#[1] 0.8601464
+pt(-1*sample_t,df=(nrows-1))*2 > 0.05
+#[1] TRUE so reject hypothesis 0
+ 
