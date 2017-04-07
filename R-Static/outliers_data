@@ -1,0 +1,13 @@
+pixcel=read.csv("pixcel.csv",header=T)
+outliers=function(data1)
+{n=ncol(data1)
+cmean=vector()
+for (i in 1:n)
+{
+a=na.omit(data1[,i])
+cmean[i]=mean(a[a> (quantile(a,0.25)-1.5*(quantile(a,0.75)-quantile(a,0.25)))&a< (quantile(a,0.75)+1.5*(quantile(a,0.75)-quantile(a,0.25)))])
+}
+boxplot(pixcel,outline = F)
+return(cmean)
+}
+outliers(pixcel)
