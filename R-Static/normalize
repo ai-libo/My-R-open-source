@@ -1,0 +1,7 @@
+normalize<- function(x,m=mean(x),s=sd(x))
+{
+(x-m)/s
+}
+#normalize<- normalize(c(1,3,6,10,15))
+#mean(normalized) #almost 0
+#sd(normalized)
