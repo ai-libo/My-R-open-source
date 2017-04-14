@@ -17,4 +17,4 @@ def calcShannonEnt(dataSet):
         shannonEnt -= prob * log(prob,2) #log base 2
     return shannonEnt
     
-    
+    #另一种计算方法是基尼系数
