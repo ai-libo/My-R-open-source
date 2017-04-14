@@ -1,0 +1,13 @@
+'''
+Created on 4 14, 2017
+Decision Tree Source Code for Machine Learning 
+@author: libo
+'''
+def splitDataSet(dataSet, axis, value):
+    retDataSet = []
+    for featVec in dataSet:
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]     #chop out axis used for splitting
+            reducedFeatVec.extend(featVec[axis+1:])
+            retDataSet.append(reducedFeatVec)
+    return retDataSet
