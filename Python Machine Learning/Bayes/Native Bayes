@@ -14,13 +14,15 @@ def loadDataSet():
                  ['*', '*', '*', '*', '*', '*']]
     classVec = [0,1,0,1,0,1]    #1 is abusive, 0 not
     return postingList,classVec
-                 
+
+##data etl
+##create chinese character dict                 
 def createVocabList(dataSet):
     vocabSet = set([])  #create empty set
     for document in dataSet:
         vocabSet = vocabSet | set(document) #union of the two sets
     return list(vocabSet)
-
+##convert chinese character to equal length 0/1 ventor compare dict 
 def setOfWords2Vec(vocabList, inputSet):
     returnVec = [0]*len(vocabList)
     for word in inputSet:
@@ -29,8 +31,19 @@ def setOfWords2Vec(vocabList, inputSet):
         else: print "the word: %s is not in my Vocabulary!" % word
     return returnVec
 
+##create 0/1 vector matrix
+trainMat = []
+for postinDoc in listOPosts:
+trainMat.append(setOfWord2Vec(myVocabList,postinDoc))
 
+##Avoid the probability value of 0
+p0Num = ones(numWords);
+p1Num = ones(numWords);
+##Reduce the overflow
+p1Vect = log(p1Num/p1Denom)
+p0Vect = log(p0Num/p0Denom)
 
+##testing NB():
 def trainNB0(trainMatrix,trainCategory):
     numTrainDocs = len(trainMatrix)
     numWords = len(trainMatrix[0])
@@ -48,6 +61,7 @@ def trainNB0(trainMatrix,trainCategory):
     p0Vect = log(p0Num/p0Denom)          #change to log()
     return p0Vect,p1Vect,pAbusive
 
+#reduce the overflow
 def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
     p1 = sum(vec2Classify * p1Vec) + log(pClass1)    #element-wise mult
     p0 = sum(vec2Classify * p0Vec) + log(1.0 - pClass1)
@@ -55,7 +69,7 @@ def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
         return 1
     else: 
         return 0
-    
+ #BAG   
 def bagOfWords2VecMN(vocabList, inputSet):
     returnVec = [0]*len(vocabList)
     for word in inputSet:
