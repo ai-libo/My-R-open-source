@@ -1,0 +1,6 @@
+##Avoid the probability value of 0
+p0Num = ones(numWords);
+p1Num = ones(numWords);
+##Reduce the overflow
+p1Vect = log(p1Num/p1Denom)
+p0Vect = log(p0Num/p0Denom)
