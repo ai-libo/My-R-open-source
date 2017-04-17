@@ -1,0 +1,18 @@
+##create chinese character dict
+def createVocabList(dataSet):
+    vocabSet = set([])  #create empty set
+    for document in dataSet:
+        vocabSet = vocabSet | set(document) #union of the two sets
+    return list(vocabSet)
+##convert chinese character to equal length 0/1 ventor compare dict 
+def setOfWords2Vec(vocabList, inputSet):
+    returnVec = [0]*len(vocabList)
+    for word in inputSet:
+        if word in vocabList:
+            returnVec[vocabList.index(word)] = 1
+        else: print "the word: %s is not in my Vocabulary!" % word
+    return returnVec
+##create 0/1 vector matrix
+trainMat = []
+for postinDoc in listOPosts:
+    trainMat.append(setOfWord2Vec(myVocabList,postinDoc))
