@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Apr 27 07:54:53 2017
-
+##局部加权线性回归
 @author: BoLi
 """
 from numpy import *
